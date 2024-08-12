@@ -1,0 +1,28 @@
+.camera-capture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .webcam {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .capture-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .capture-button:hover {
+    background-color: #0056b3;
+  }
+  

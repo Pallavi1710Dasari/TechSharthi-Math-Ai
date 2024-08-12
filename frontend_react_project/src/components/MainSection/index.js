@@ -5,13 +5,19 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ReactLoading from 'react-loading';
 import { sendMessageToApi, uploadFileToApi } from '../../service/serviceApi';
 import { FaFilePdf } from 'react-icons/fa6';
-import CameraCapture from '../CameraPage';
+import Modal from 'react-modal';
+import CameraCapture from '../CameraCapture';
+
+// Set the app element for accessibility
+Modal.setAppElement('#root');
 
 function MainSection({ containerClassName, pdfpage }) {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [fileSelected, setFileSelected] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCameraCaptureOpen, setIsCameraCaptureOpen] = useState(false);
 
   const handleSendMessage = async () => {
     if (userInput.trim()) {
@@ -68,23 +74,42 @@ function MainSection({ containerClassName, pdfpage }) {
     }
   };
 
-  const handleCapture = (imageSrc) => {
-    // Handle the captured image, if needed
-  };
-
-  const handleSendImageAsPDF = async (pdfBlob) => {
+  const handleCapture = async (imageSrc) => {
     setLoading(true);
+
     try {
-      const response = await uploadFileToApi(new File([pdfBlob], 'image.pdf'));
-      if (response.image_url) {
-        const newImageMessage = { role: 'user', content: [{ type: 'image_url', image_url: { url: response.image_url } }] };
+      const response = await fetch(imageSrc);
+      const blob = await response.blob();
+
+      const file = new File([blob], 'captured-image.jpg', { type: 'image/jpeg' });
+      const uploadResponse = await uploadFileToApi(file);
+
+      if (uploadResponse.image_url) {
+        const newImageMessage = {
+          role: 'user',
+          content: [{ type: 'image_url', image_url: { url: uploadResponse.image_url } }],
+        };
         setMessages(prevMessages => [...prevMessages, newImageMessage]);
       }
     } catch (error) {
-      console.error('Error uploading PDF:', error);
+      console.error('Error capturing and uploading image:', error);
     } finally {
       setLoading(false);
+      setIsCameraCaptureOpen(false); // Hide the camera capture UI after capturing
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCameraClick = () => {
+    closeModal(); // Close the modal first, then show the camera capture UI
+    setIsCameraCaptureOpen(true);
   };
 
   const renderMessageContent = (content) => {
@@ -140,14 +165,43 @@ function MainSection({ containerClassName, pdfpage }) {
           />
           {!pdfpage && (
             <>
-              <label id="file-upload-label" htmlFor="file-upload">
+              <label id="file-upload-label" onClick={openModal}>
                 <i className="fas fa-plus"></i>
               </label>
+              <Modal
+                  isOpen={isModalOpen}
+                  onRequestClose={closeModal}
+                  contentLabel="Upload Options"
+                  className="modal"
+                  overlayClassName="overlay"
+                  style={{
+                    content: {
+                      top: '60px', // Position below the + icon
+                      left: '50%',
+                      right: 'auto',
+                      bottom: 'auto',
+                      transform: 'translateX(-50%)',
+                      width: '300px',
+                      padding: '20px',
+                      border: 'none',
+                      borderRadius: '10px',
+                    },
+                    overlay: {
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    },
+                  }}
+                >
+                <h2>Select an Option</h2>
+                <button onClick={() => document.getElementById('file-upload').click()}>Upload File</button>
+                <button onClick={handleCameraClick}>Use Camera</button>
+                <button onClick={closeModal}>Close</button>
+              </Modal>
               <input
                 type="file"
                 id="file-upload"
                 accept=".png,.jpg,.jpeg,.pdf"
                 onChange={handleFileChange}
+                style={{ display: 'none' }} // Hidden input, triggered by button
               />
             </>
           )}
@@ -155,7 +209,11 @@ function MainSection({ containerClassName, pdfpage }) {
             <i className="fas fa-paper-plane"></i>
           </button>
         </div>
-        <CameraCapture onCapture={handleCapture} onSendImageAsPDF={handleSendImageAsPDF} />
+        {isCameraCaptureOpen && (
+          <div id="camera-capture" style={{ position: 'absolute', top: '50px', left: '50%', transform: 'translateX(-50%)' }}>
+            <CameraCapture onCapture={handleCapture} />
+          </div>
+        )}
       </div>
     </div>
   );
