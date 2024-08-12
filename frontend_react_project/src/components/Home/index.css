@@ -3,7 +3,8 @@
     background-color: #000000;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .sidebar-closed{
     width: 7vw;
@@ -16,23 +17,54 @@
     position: relative;
 }
 .body-container-without-full-sidebar{
-    width: 68vw;
-    height: 97vh;
-    position: relative;
+    width: 85vw;
+    height: 130vh;
+    /* position: relative; */
     background-color: #000000;
     padding: "20px";
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 30px 20px 10px 30px;
 }
 .body-container-with-full-sidebar{
-    width: 55vw;
-    height: 97vh;
-    position: relative;
+    width: 65vw;
+    height: 130vh;
+    /* position: relative; */
     background-color: #000000;
     padding: "20px";
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 20px 10px 30px;
+}
+ 
+.cards-container-without-full-sidebar {
+    width: 83vw;
+    height: 30vh;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px 15px 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+ 
+.cards-container-with-full-sidebar {
+    width: 64vw;
+    height: 30vh;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+   
+    /* position: relative; */
+    margin: 20px 15px 10px 0px;
 }

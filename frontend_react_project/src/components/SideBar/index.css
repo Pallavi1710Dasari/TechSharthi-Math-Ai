@@ -1,130 +1,163 @@
 .sidebar-container {
-    display: flex;
-    align-items: stretch;
-  }
-  
-  .sidebar-background {
-    background-color: #000000;
-    color: white;
-    height: 100vh;
-    overflow: hidden;
-    transition: width 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .sidebar-background.expanded {
-    width: 20vw;
-  }
-  
-  .sidebar-background:not(.expanded) {
-    width: 5vw;
-  }
-  
-  .card-icons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: calc(100% - 60px); /* Adjust height to leave space for the footer */
-  }
-  
-  .profile-success-container {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .profile-img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-  }
-  
-  .pop-heading {
-    margin-left: 10px;
-    font-size: 25px;
-    color: white;
-  }
-  
-  .icons {
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px;
-    margin-bottom: 5%;
-  }
-  
-  .sidebar-item {
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    padding: 8px;
-    cursor: pointer;
-    width:70%;
-    text-align: center;
-  }
-  
-  .sidebar-item:hover {
-    background-color: #34495e;
-  }
-  
-  .nav-item-mobile-link {
-    font-size: 24px;
-  }
-  
-  .blue-icon{
-    background-color: #2980b9;
-    border-radius: 5px;
-    margin:20px;
-  }
-  
-  .sidebar-description {
-    margin-left: 10px;
-    font-size: 14px;
-  }
-  
-  .last-item {
-    padding: 10px 20px;
-  }
-  
-  .sidebar-footer {
-    padding: 20px;
-    display: flex;
-    justify-content: center; 
- }
-  
-  .sidebar-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .sidebar-button:hover {
-    background-color: #2980b9;
-  }
-  
-  .sidebar-toggle-button {
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px 0px 0px 5px;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    height:50px;
-    width:30px;
-    align-self: center;
-    margin-left: -1px; /* Slight overlap to hide any gaps */
-  }
-  
-  .sidebar-toggle-button:hover {
-    font-size: 25px;
-    background-color: #bfbfbf;
-    color: #3498db;
-  }
+  display: flex;
+  align-items: stretch;
+}
+
+.sidebar-background {
+  background-color: #000000;
+  color: white;
+  height: 95vh;
+  /* align-self: flex-end; */
+  overflow: hidden;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-background.expanded {
+  width: 20vw;
+}
+
+.sidebar-background:not(.expanded) {
+  width: 5vw;
+}
+
+.card-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: calc(100% - 60px); /* Adjust height to leave space for the footer */
+}
+
+.profile-success-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 10%;
+}
+
+.pop-heading {
+  margin-left: 10px;
+  font-size: 25px;
+  color: white;
+}
+
+.icons {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  margin-bottom: 5%;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 8px;
+  cursor: pointer;
+  width:70%;
+  text-align: center;
+}
+
+.sidebar-item:hover {
+  background-color: #34495e;
+}
+
+.nav-item-mobile-link {
+  font-size: 24px;
+}
+
+.blue-icon{
+  background-color: #2980b9;
+  border-radius: 5px;
+  margin:20px;
+}
+
+.sidebar-description {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.last-item {
+  margin-top: auto;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.sidebar-button:hover {
+  background-color: #2980b9;
+}
+
+.sidebar-toggle-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  height:50px;
+  width:30px;
+  align-self: center;
+  margin-left: -1px; /* Slight overlap to hide any gaps */
+}
+
+.sidebar-toggle-button:hover {
+  font-size: 25px;
+  background-color: #bfbfbf;
+  color: #3498db;
+}
+
+.logo {
+  width: 60px;
+  height: 50px;
+  color: #ffffff;
+  /* margin-right: 20px; */
+}
+
+.logo-text{
+  width: 100%;
+  /* margin-right: 20px; */
+}
+
+.gradient-title {
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* .subtitle {
+  font-size: 20px;
+  position: absolute;
+  bottom: 55px;
+  left: 125px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 1000;
+  font-style: normal;
+} */
+
+.gradient-subtitle {
+  background: linear-gradient(90deg, #2a91ff, #4557f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

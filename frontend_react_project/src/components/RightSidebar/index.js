@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom"
 import './index.css'; // Import the CSS file for styling
-
-const RightSidebar = () => {
+ 
+const RightSidebar = ({cardsContainerClassName}) => {
     return (
-        <div className="sidebar">
+        <div className={cardsContainerClassName}>
             <Link to="/students" className='link'>
                 <div className="card">
                     <h3>🧑🏻‍🏫 For Students</h3>
@@ -20,5 +20,5 @@ const RightSidebar = () => {
         </div>
     );
 };
-
+ 
 export default RightSidebar;

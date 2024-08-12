@@ -9,43 +9,48 @@ import { MdOutlineCoPresent } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-
+import techSharthiLogo from "../../public/techSharthiLogo.webp"
+ 
 import "./index.css";
-
+ 
 const SideBar = ({ isExpanded, onChangesidebar, sideClassName }) => {
   const navigate = useNavigate()
-
+ 
   const [selectedTab, setTab] = useState("tab1")
-
+ 
   const sidebarToggle = () => {
     onChangesidebar();
   };
-
+ 
 const onClickPdf = () =>{
     setTab("tab2")
     navigate("/pdfpage")
 }
-
+ 
 const onPlusClick = () =>{
-  window.location.reload();
+  navigate("/")
 }
-
+ 
   return (
     <div className={`sidebar-container ${sideClassName}`}>
       <div className={`sidebar-background ${isExpanded ? "expanded" : ""}`}>
         <div className="card-icons">
-          <div className="profile-success-container">
-            {/* <img
-              className="profile-img"
-              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSHiKtyhFjc7Wtri86aOB_pMsz49PFPTTnedFrt6NrBMKjwFHc1"
-              alt="Profile"
-            /> */}
-            {/* {isExpanded && <h1 className="pop-heading">PopAi</h1>} */}
+        <div className="profile-success-container" style={{marginLeft: isExpanded && "30px"}}>
+            <img
+              className="logo"
+              src={techSharthiLogo}
+              alt="logo"
+            />
+            {isExpanded &&
+            <div className="logo-text">
+              <h1 className="title gradient-title">Equati<span className="subtitle gradient-subtitle">AI</span></h1>
+            </div>  
+            }
           </div>
           <div className="icons">
             <div className={`sidebar-item chat-icon ${selectedTab === "tab1" && "blue-icon"}`} onClick={onPlusClick}>
               <CiSquarePlus className="nav-item-mobile-link" />
-              {isExpanded && <p className="sidebar-description">New Chat</p>}
+              {isExpanded && <p className="sidebar-description">Chat</p>}
             </div>
             <div className={`sidebar-item ${selectedTab === "tab2" && "blue-icon"}`} onClick={onClickPdf}>
               <FaRegFilePdf className="nav-item-mobile-link" />
@@ -70,7 +75,7 @@ const onPlusClick = () =>{
           </div>
         </div>
         <div className="sidebar-item last-item">
-        {!isExpanded && <CgProfile className="nav-item-mobile-link" />}   
+        {!isExpanded && <CgProfile className="nav-item-mobile-link" />}  
         </div>
         {isExpanded && <div className="sidebar-footer">
           <button className="sidebar-button">Sign up / Log in</button>
@@ -82,5 +87,5 @@ const onPlusClick = () =>{
     </div>
   );
 };
-
+ 
 export default SideBar;

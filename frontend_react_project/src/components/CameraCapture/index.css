@@ -1,28 +1,69 @@
 .camera-capture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .webcam {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 8px;
-    border: 2px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .capture-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .capture-button:hover {
-    background-color: #0056b3;
-  }
-  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7); /* Dark background for better visibility */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.webcam {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.capture-icon {
+  position: absolute;
+  bottom: 10px;
+  font-size: 48px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.capture-text {
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.camera-capture {
+  position: relative;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.webcam {
+  width: 100%;
+  height: auto;
+}
+
+.capture-icon {
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.capture-text {
+  font-size: 16px;
+  color: white;
+}
+

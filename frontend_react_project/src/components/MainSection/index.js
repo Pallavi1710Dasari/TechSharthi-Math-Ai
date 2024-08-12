@@ -7,11 +7,13 @@ import { sendMessageToApi, uploadFileToApi } from '../../service/serviceApi';
 import { FaFilePdf } from 'react-icons/fa6';
 import Modal from 'react-modal';
 import CameraCapture from '../CameraCapture';
+import RightSidebar from '../RightSidebar';
+import techsharthilogo from '../../public/techsharthilogo.jpg'
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
 
-function MainSection({ containerClassName, pdfpage }) {
+function MainSection({ containerClassName, pdfpage, cardsContainerClassName}) {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -112,6 +114,10 @@ function MainSection({ containerClassName, pdfpage }) {
     setIsCameraCaptureOpen(true);
   };
 
+  const handleCloseCameraCapture = () => {
+    setIsCameraCaptureOpen(false);
+  };
+
   const renderMessageContent = (content) => {
     if (content[0].type === 'text') {
       const formattedText = content[0].text.split('\n').map((str, index) => {
@@ -126,10 +132,37 @@ function MainSection({ containerClassName, pdfpage }) {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
+  // Custom button styles
+  const buttonStyle = {
+    display: 'block',
+    width: '100%',
+    padding: '12px 0',
+    margin: '10px 0',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#007BFF', // Blue background for the buttons
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  };
+
+  const closeButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#dc3545', // Red background for the close button
+  };
+
   return (
     <div>
       <div className={containerClassName}>
-        <Header />
+        {/*<Header />*/}
         <div id="chat-container">
           {pdfpage && !fileSelected && (
             <div className='upload-pdf-con'>
@@ -144,6 +177,7 @@ function MainSection({ containerClassName, pdfpage }) {
               />
             </div>
           )}
+          <img src={techsharthilogo} style={{height: 200, width: 300, position: "fixed", left: 550, top: 200, backgroundColor: 'transparent'}}/> 
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.role}`}>
               {renderMessageContent(message.content)}
@@ -162,6 +196,7 @@ function MainSection({ containerClassName, pdfpage }) {
             placeholder="Hi! Ask me anything..."
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
+            onKeyPress={handleKeyPress} // Listen for the Enter key
           />
           {!pdfpage && (
             <>
@@ -169,33 +204,52 @@ function MainSection({ containerClassName, pdfpage }) {
                 <i className="fas fa-plus"></i>
               </label>
               <Modal
-                  isOpen={isModalOpen}
-                  onRequestClose={closeModal}
-                  contentLabel="Upload Options"
-                  className="modal"
-                  overlayClassName="overlay"
-                  style={{
-                    content: {
-                      top: '60px', // Position below the + icon
-                      left: '50%',
-                      right: 'auto',
-                      bottom: 'auto',
-                      transform: 'translateX(-50%)',
-                      width: '300px',
-                      padding: '20px',
-                      border: 'none',
-                      borderRadius: '10px',
-                    },
-                    overlay: {
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    },
-                  }}
-                >
-                <h2>Select an Option</h2>
-                <button onClick={() => document.getElementById('file-upload').click()}>Upload File</button>
-                <button onClick={handleCameraClick}>Use Camera</button>
-                <button onClick={closeModal}>Close</button>
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                contentLabel="Upload Options"
+                className="modal"
+                overlayClassName="overlay"
+                style={{
+                  content: {
+                    top: '200px', // Adjust as needed for better positioning
+                    left: '50%',
+                    right: 'auto',
+                    bottom: 'auto',
+                    transform: 'translateX(-50%)',
+                    width: '350px', // Slightly wider for better spacing
+                    padding: '25px', // Increase padding for more space inside
+                    border: '2px solid #ccc', // Subtle border for better separation
+                    borderRadius: '12px', // Slightly more rounded corners
+                    backgroundColor: '#f9f9f9', // Light grey background for a softer look
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add a shadow for depth
+                  },
+                  overlay: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.75)', // Darker overlay for more focus
+                  },
+                }}
+              >
+                <h2 style={{ 
+                  fontSize: '20px', 
+                  marginBottom: '20px', 
+                  textAlign: 'center', 
+                  color: '#333', 
+                  fontFamily: 'Arial, sans-serif' 
+                }}>
+                  Select an Option
+                </h2>
+                <button 
+                  onClick={() => document.getElementById('file-upload').click()} 
+                  style={buttonStyle}>
+                  Upload File
+                </button>
+                <button onClick={handleCameraClick} style={buttonStyle}>
+                  Use Camera
+                </button>
+                <button onClick={closeModal} style={closeButtonStyle}>
+                  Close
+                </button>
               </Modal>
+
               <input
                 type="file"
                 id="file-upload"
@@ -209,9 +263,10 @@ function MainSection({ containerClassName, pdfpage }) {
             <i className="fas fa-paper-plane"></i>
           </button>
         </div>
+        <RightSidebar cardsContainerClassName={cardsContainerClassName}/>
         {isCameraCaptureOpen && (
           <div id="camera-capture" style={{ position: 'absolute', top: '50px', left: '50%', transform: 'translateX(-50%)' }}>
-            <CameraCapture onCapture={handleCapture} />
+            <CameraCapture onCapture={handleCapture} onClose={handleCloseCameraCapture} />
           </div>
         )}
       </div>
