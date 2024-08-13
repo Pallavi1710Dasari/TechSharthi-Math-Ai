@@ -1,6 +1,7 @@
 import './index.css';
 import React, { useState } from 'react';
 import Header from "../Header";
+import Footer from "../Footer"; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ReactLoading from 'react-loading';
 import { sendMessageToApi, uploadFileToApi } from '../../service/serviceApi';
@@ -8,7 +9,6 @@ import { FaFilePdf } from 'react-icons/fa6';
 import Modal from 'react-modal';
 import CameraCapture from '../CameraCapture';
 import RightSidebar from '../RightSidebar';
-import techsharthilogo from '../../public/techsharthilogo.jpg'
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
@@ -177,7 +177,6 @@ function MainSection({ containerClassName, pdfpage, cardsContainerClassName}) {
               />
             </div>
           )}
-          <img src={techsharthilogo} style={{height: 200, width: 300, position: "fixed", left: 550, top: 200, backgroundColor: 'transparent'}}/> 
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.role}`}>
               {renderMessageContent(message.content)}
@@ -270,6 +269,7 @@ function MainSection({ containerClassName, pdfpage, cardsContainerClassName}) {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
