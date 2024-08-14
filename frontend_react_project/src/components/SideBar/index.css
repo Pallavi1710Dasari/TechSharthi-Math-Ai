@@ -6,7 +6,7 @@
 .sidebar-background {
   background-color: #000000;
   color: white;
-  height: 95vh;
+  height: 100vh;
   /* align-self: flex-end; */
   overflow: hidden;
   transition: width 0.3s ease;

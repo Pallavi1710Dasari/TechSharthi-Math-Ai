@@ -18,7 +18,7 @@ function Home() {
     return(
         <div className='home-con'>
             <SideBar sideClassName={sideClassName} onChangesidebar={onChangesidebar} isExpanded={isExpanded} />
-            <MainSection containerClassName={containerClassName} cardsContainerClassName={cardsContainerClassName}/>
+            <MainSection containerClassName={containerClassName} isSidebarExtended={isExpanded}/>
             {/*<RightSidebar/>*/}
         </div>
     )

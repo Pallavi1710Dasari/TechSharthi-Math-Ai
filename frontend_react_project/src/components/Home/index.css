@@ -1,39 +1,42 @@
 .home-con{
     display: flex;
-    background-color: #000000;
+    background-color: #2cb810;
     height: 100vh;
     width: 100vw;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 .sidebar-closed{
     width: 7vw;
     height: 100vh;
+    background-color: orange;
     position: relative;
 }
 .sidebar-opened{
     width: 20vw;
     height: 100vh;
+    background-color: orange;
     position: relative;
 }
 .body-container-without-full-sidebar{
-    width: 85vw;
-    height: 130vh;
+    width: 83vw;
+    height: 92vh;
     /* position: relative; */
-    background-color: #000000;
+    background-color: #263dc4;
     padding: "20px";
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px 20px 10px 30px;
+    margin: 30px 30px 30px 30px;
+    overflow: hidden;
 }
 .body-container-with-full-sidebar{
-    width: 75vw;
-    height: 130vh;
+    width: 70vw;
+    height: 92vh;
     /* position: relative; */
-    background-color: #000000;
+    background-color: #263dc4;
     padding: "20px";
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
@@ -42,29 +45,33 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 30px 20px 10px 30px;
+    margin: 30px 30px 30px 30px;
+    overflow: hidden;
 }
+ .cards-container-with-full-sidebar{
+    height:20vh;
+    width:20vw;
+    border-radius:"10px";
+    margin:"20px";
+    background-size: 'cover';
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'center';
+    align-items: 'center';
+    overflow:"hidden";
+    padding:"15px";
+ }
+ .cards-container-without-full-sidebar{
+    height:30vh;
+    width:4vw;
+    border-radius:"10px";
+    margin:"20px";
+    background-size: 'cover';
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'center';
+    align-items: 'center';
+    overflow:"hidden";
+    padding:"15px";
+ }
  
-.cards-container-without-full-sidebar {
-    width: 83vw;
-    height: 30vh;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #fff;
-    margin: 20px 15px 10px 0px;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-}
- 
-.cards-container-with-full-sidebar {
-    width: 64vw;
-    height: 30vh;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #fff;
-    display: flex;
-   
-    /* position: relative; */
-    margin: 20px 15px 10px 0px;
-}

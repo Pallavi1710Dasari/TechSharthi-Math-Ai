@@ -79,7 +79,6 @@ body {
   #input-container {
     display: flex;
     align-items: center;
-    width: 100%;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -218,6 +217,18 @@ body {
   .modal button.close:hover {
     background-color: #c82333;
   }
+  
+  .showChat-con{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
+
+
+
   
   
   

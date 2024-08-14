@@ -9,17 +9,19 @@ import { FaFilePdf } from 'react-icons/fa6';
 import Modal from 'react-modal';
 import CameraCapture from '../CameraCapture';
 import RightSidebar from '../RightSidebar';
+import backgroundImage from "../../public/backgroundImage.jpeg";
 
 // Set the app element for accessibility
 Modal.setAppElement('#root');
 
-function MainSection({ containerClassName, pdfpage, cardsContainerClassName}) {
+function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [fileSelected, setFileSelected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCameraCaptureOpen, setIsCameraCaptureOpen] = useState(false);
+  const [showChat, setShowChat] = useState(false); // State to control whether to show chat
 
   const handleSendMessage = async () => {
     if (userInput.trim()) {
@@ -159,117 +161,153 @@ function MainSection({ containerClassName, pdfpage, cardsContainerClassName}) {
     backgroundColor: '#dc3545', // Red background for the close button
   };
 
+  const handleStartChat = () => {
+    setShowChat(true);
+  };
+
   return (
     <div>
       <div className={containerClassName}>
-        {/*<Header />*/}
-        <div id="chat-container">
-          {pdfpage && !fileSelected && (
-            <div className='upload-pdf-con'>
-              <label id="file-upload-label" htmlFor="file-upload">
-                <FaFilePdf />Upload PDF File Here
-              </label>
-              <input
-                type="file"
-                id="file-upload"
-                accept=".pdf"
-                onChange={handleFileChange}
-              />
-            </div>
-          )}
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.role}`}>
-              {renderMessageContent(message.content)}
-            </div>
-          ))}
-          {loading && (
-            <div className="message assistant">
-              <ReactLoading type="bubbles" color="#000" height={24} width={24} />
-            </div>
-          )}
-        </div>
-        <div id="input-container">
-          <input
-            type="text"
-            id="user-input"
-            placeholder="Hi! Ask me anything..."
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyPress={handleKeyPress} // Listen for the Enter key
-          />
-          {!pdfpage && (
-            <>
-              <label id="file-upload-label" onClick={openModal}>
-                <i className="fas fa-plus"></i>
-              </label>
-              <Modal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                contentLabel="Upload Options"
-                className="modal"
-                overlayClassName="overlay"
-                style={{
-                  content: {
-                    top: '200px', // Adjust as needed for better positioning
-                    left: '50%',
-                    right: 'auto',
-                    bottom: 'auto',
-                    transform: 'translateX(-50%)',
-                    width: '350px', // Slightly wider for better spacing
-                    padding: '25px', // Increase padding for more space inside
-                    border: '2px solid #ccc', // Subtle border for better separation
-                    borderRadius: '12px', // Slightly more rounded corners
-                    backgroundColor: '#f9f9f9', // Light grey background for a softer look
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add a shadow for depth
-                  },
-                  overlay: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.75)', // Darker overlay for more focus
-                  },
-                }}
-              >
-                <h2 style={{ 
-                  fontSize: '20px', 
-                  marginBottom: '20px', 
-                  textAlign: 'center', 
-                  color: '#333', 
-                  fontFamily: 'Arial, sans-serif' 
-                }}>
-                  Select an Option
-                </h2>
-                <button 
-                  onClick={() => document.getElementById('file-upload').click()} 
-                  style={buttonStyle}>
-                  Upload File
-                </button>
-                <button onClick={handleCameraClick} style={buttonStyle}>
-                  Use Camera
-                </button>
-                <button onClick={closeModal} style={closeButtonStyle}>
-                  Close
-                </button>
-              </Modal>
-
-              <input
-                type="file"
-                id="file-upload"
-                accept=".png,.jpg,.jpeg,.pdf"
-                onChange={handleFileChange}
-                style={{ display: 'none' }} // Hidden input, triggered by button
-              />
-            </>
-          )}
-          <button id="send-button" onClick={handleSendMessage}>
-            <i className="fas fa-paper-plane"></i>
-          </button>
-        </div>
-        <RightSidebar cardsContainerClassName={cardsContainerClassName}/>
-        {isCameraCaptureOpen && (
-          <div id="camera-capture" style={{ position: 'absolute', top: '50px', left: '50%', transform: 'translateX(-50%)' }}>
-            <CameraCapture onCapture={handleCapture} onClose={handleCloseCameraCapture} />
+        {!showChat ? (
+          <div>
+          <div 
+            id="background-container" 
+            style={{
+              backgroundImage: `url(${backgroundImage})`, 
+              width: isSidebarExtended ? "65vw" : "75vw", 
+              borderRadius: "10px", 
+              height: '60vh', 
+              margin: "10px", 
+              backgroundSize: 'cover', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              overflow: "hidden", 
+              padding: "15px"
+            }}
+          >
+            <RightSidebar isSidebarExtended={isSidebarExtended} /> 
+            <button 
+              onClick={handleStartChat} 
+              style={{ 
+                padding: '10px 20px', 
+                fontSize: '18px', 
+                cursor: 'pointer', 
+                borderRadius: '5px', 
+                backgroundColor: '#007BFF', 
+                color: '#fff' 
+              }}
+            >
+              Start Chat
+            </button>
+          </div>
+          <Footer />
+          </div>
+        ) : (
+          <div id="chat-container">
+            {pdfpage && !fileSelected && (
+              <div className='upload-pdf-con'>
+                <label id="file-upload-label" htmlFor="file-upload">
+                  <FaFilePdf /> Upload PDF File Here
+                </label>
+                <input
+                  type="file"
+                  id="file-upload"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                />
+              </div>
+            )}
+            {messages.map((message, index) => (
+              <div key={index} className={`message ${message.role}`}>
+                {renderMessageContent(message.content)}
+              </div>
+            ))}
+            {loading && (
+              <div className="message assistant">
+                <ReactLoading type="bubbles" color="#000" height={24} width={24} />
+              </div>
+            )}
           </div>
         )}
+        {showChat && (
+          <>
+            <div id="input-container" style={{width: isSidebarExtended ? "55vw" : "75vw", margin:"20px",}}>
+              <input
+                type="text"
+                id="user-input"
+                placeholder="Hi! Ask me anything..."
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                onKeyPress={handleKeyPress} // Listen for the Enter key
+              />
+              {!pdfpage && (
+                <>
+                  <label id="file-upload-label" onClick={openModal}>
+                    <i className="fas fa-plus"></i>
+                  </label>
+                  <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Upload Options"
+                    className="modal"
+                    overlayClassName="overlay"
+                    style={{
+                      content: {
+                        top: '200px', // Adjust as needed for better positioning
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        transform: 'translateX(-50%)',
+                        width: '350px', // Slightly wider for better spacing
+                        padding: '25px', // Increase padding for more space inside
+                        borderRadius: '12px', // Rounder corners for a softer look
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Softer shadow for depth
+                      },
+                    }}
+                  >
+                    <div>
+                      <h2>Choose Upload Method</h2>
+                      <button style={buttonStyle}>
+                        <label htmlFor="file-upload">
+                          <i className="fas fa-file"></i> Upload File
+                        </label>
+                        <input
+                          type="file"
+                          id="file-upload"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                          style={{ display: 'none' }}
+                        />
+                      </button>
+                      <button onClick={handleCameraClick} style={buttonStyle}>
+                        <i className="fas fa-camera"></i> Capture Photo
+                      </button>
+                      <button onClick={closeModal} style={closeButtonStyle}>
+                        <i className="fas fa-times"></i> Close
+                      </button>
+                    </div>
+                  </Modal>
+                  {isCameraCaptureOpen && (
+                    <CameraCapture
+                      onCapture={handleCapture}
+                      onClose={handleCloseCameraCapture}
+                    />
+                  )}
+                </>
+              )}
+              <button
+                id="send-button"
+                onClick={handleSendMessage}
+                disabled={!userInput.trim() && !fileSelected} // Disable button if input is empty and no file is selected
+              >
+                <i className="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </>
+        )}
       </div>
-      <Footer />
     </div>
   );
 }
