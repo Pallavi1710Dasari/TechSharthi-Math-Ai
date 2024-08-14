@@ -17,7 +17,6 @@ function Pdfpage() {
         <div className='home-con'>
             <SideBar sideClassName={sideClassName} onChangesidebar={onChangesidebar} isExpanded={isExpanded} />
             <MainSection containerClassName={containerClassName} pdfpage={true}/>
-            <RightSidebar/>
         </div>
     )
 }

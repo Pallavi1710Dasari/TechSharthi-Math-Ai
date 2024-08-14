@@ -197,7 +197,7 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
                   fontSize: '18px', 
                   cursor: 'pointer', 
                   borderRadius: '5px', 
-                  backgroundColor: '#007BFF', 
+                  backgroundColor: '#180161', 
                   color: '#fff' 
                 }}
               >
