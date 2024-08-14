@@ -84,12 +84,15 @@ body {
     border-radius: 4px;
     padding: 10px;
     align-self: flex-end;
+    border-color: orange;
+    border-width: 2px;
+    border-style: solid;
   }
   
   #user-input {
     flex-grow: 1;
     padding: 10px;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
     outline: none;
   }

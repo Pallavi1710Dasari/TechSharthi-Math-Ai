@@ -54,8 +54,8 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    setFileSelected(true);
     if (file) {
+      setFileSelected(true);
       setLoading(true);
 
       try {
@@ -170,42 +170,42 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
       <div className={containerClassName}>
         {!showChat ? (
           <div>
-          <div 
-            id="background-container" 
-            style={{
-              backgroundImage: `url(${backgroundImage})`, 
-              width: isSidebarExtended ? "65vw" : "75vw", 
-              borderRadius: "10px", 
-              height: '60vh', 
-              margin: "10px", 
-              backgroundSize: 'cover', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'center', 
-              alignItems: 'center', 
-              overflow: "hidden", 
-              padding: "15px"
-            }}
-          >
-            <RightSidebar isSidebarExtended={isSidebarExtended} /> 
-            <button 
-              onClick={handleStartChat} 
-              style={{ 
-                padding: '10px 20px', 
-                fontSize: '18px', 
-                cursor: 'pointer', 
-                borderRadius: '5px', 
-                backgroundColor: '#007BFF', 
-                color: '#fff' 
+            <div 
+              id="background-container" 
+              style={{
+                backgroundImage: `url(${backgroundImage})`, 
+                width: isSidebarExtended ? "65vw" : "75vw", 
+                borderRadius: "10px", 
+                height: '60vh', 
+                margin: "10px", 
+                backgroundSize: 'cover', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                overflow: "hidden", 
+                padding: "15px"
               }}
             >
-              Start Chat
-            </button>
-          </div>
-          <Footer />
+              <RightSidebar isSidebarExtended={isSidebarExtended} /> 
+              <button 
+                onClick={handleStartChat} 
+                style={{ 
+                  padding: '10px 20px', 
+                  fontSize: '18px', 
+                  cursor: 'pointer', 
+                  borderRadius: '5px', 
+                  backgroundColor: '#007BFF', 
+                  color: '#fff' 
+                }}
+              >
+                Start Chat
+              </button>
+            </div>
+            <Footer />
           </div>
         ) : (
-          <div id="chat-container">
+          <div id="chat-container" style={{width: isSidebarExtended ? "65vw" : "78vw", margin:"20px",}} >
             {pdfpage && !fileSelected && (
               <div className='upload-pdf-con'>
                 <label id="file-upload-label" htmlFor="file-upload">
@@ -215,7 +215,7 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
                   type="file"
                   id="file-upload"
                   accept=".pdf"
-                  onChange={handleFileChange}
+                  onClick={handleFileChange}
                 />
               </div>
             )}
@@ -233,7 +233,7 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
         )}
         {showChat && (
           <>
-            <div id="input-container" style={{width: isSidebarExtended ? "55vw" : "75vw", margin:"20px",}}>
+            <div id="input-container" style={{width: isSidebarExtended ? "65vw" : "78vw", margin:"20px",}}>
               <input
                 type="text"
                 id="user-input"
@@ -297,6 +297,7 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
                   )}
                 </>
               )}
+              
               <button
                 id="send-button"
                 onClick={handleSendMessage}

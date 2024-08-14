@@ -4,7 +4,7 @@
 }
 
 .sidebar-background {
-  background-color: #000000;
+  background-color: #180161;
   color: white;
   height: 100vh;
   /* align-self: flex-end; */
@@ -64,7 +64,7 @@
 }
 
 .sidebar-item:hover {
-  background-color: #34495e;
+  background-color: #fb773c;
 }
 
 .nav-item-mobile-link {
@@ -102,11 +102,11 @@
 }
 
 .sidebar-button:hover {
-  background-color: #2980b9;
+  background-color: #fb773c;
 }
 
 .sidebar-toggle-button {
-  background-color: #000000;
+  background-color: #180161;
   color: #ffffff;
   border: none;
   border-radius: 5px 0px 0px 5px;
@@ -121,14 +121,14 @@
 
 .sidebar-toggle-button:hover {
   font-size: 25px;
-  background-color: #bfbfbf;
+  background-color: #fb773c;
   color: #3498db;
 }
 
 .logo {
   width: 60px;
   height: 50px;
-  color: #ffffff;
+  color: #fb773c;
   /* margin-right: 20px; */
 }
 

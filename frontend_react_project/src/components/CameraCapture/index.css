@@ -6,6 +6,7 @@
   background: rgba(0, 0, 0, 0.7); /* Dark background for better visibility */
   padding: 10px;
   border-radius: 10px;
+  align-self: center;
 }
 
 .close-icon {
@@ -19,7 +20,7 @@
 
 .webcam {
   width: 100%;
-  height: auto;
+  height: 300px;
   border-radius: 10px;
 }
 
@@ -51,19 +52,10 @@
   z-index: 10; /* Ensure it's above other elements */
 }
 
-.webcam {
-  width: 100%;
-  height: auto;
-}
-
 .capture-icon {
   font-size: 40px;
   color: white;
   cursor: pointer;
 }
 
-.capture-text {
-  font-size: 16px;
-  color: white;
-}
 

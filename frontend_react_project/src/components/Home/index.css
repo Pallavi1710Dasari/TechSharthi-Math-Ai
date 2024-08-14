@@ -1,6 +1,6 @@
 .home-con{
     display: flex;
-    background-color: #2cb810;
+    background-color: #dfc570;
     height: 100vh;
     width: 100vw;
     overflow-y: hidden;
@@ -9,13 +9,13 @@
 .sidebar-closed{
     width: 7vw;
     height: 100vh;
-    background-color: orange;
+    background-color: #180161;
     position: relative;
 }
 .sidebar-opened{
     width: 20vw;
     height: 100vh;
-    background-color: orange;
+    background-color: #180161;
     position: relative;
 }
 .body-container-without-full-sidebar{
