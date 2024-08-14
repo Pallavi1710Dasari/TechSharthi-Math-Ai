@@ -1,4 +1,4 @@
-/* .logo {
+.logo {
     width: 100px;
     height: 80px;
     margin-top:10px;
@@ -38,16 +38,18 @@
     -webkit-text-fill-color: transparent;
 }
   
-  .subtitle {
+  /* .subtitle {
     font-size: 15px;
     margin:0px 0px 13px 0px;
     font-family: "Roboto", sans-serif;
     font-weight: 1000;
     font-style: normal;
-  }
+  } */
 
   .gradient-subtitle {
-    background: linear-gradient(90deg, #2a91ff, #4557f3);
+    background: linear-gradient(90deg, #9dbcdd, #4557f3);
+    font-size: 48px;
+    font-weight: bold;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -60,4 +62,20 @@
     font-weight: bold;
     color: #ffffff;
   }
-   */
+  
+  .description{
+    color:#0a146e;
+    font: 26px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    margin-left:5px;
+  }
+
+  .pipeIcon{
+      color: #070606; /* Example color */
+      font-size: 2em; /* Example font size */
+      padding: 0 10px; /* Add space around the pipe */
+      vertical-align: middle; /* Align the pipe vertically */
+      font-weight: bold;
+  }

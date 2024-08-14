@@ -4,7 +4,7 @@ import './index.css'; // Import the CSS file for styling
  
 const RightSidebar = ({isSidebarExtended}) => {
     return (
-        <div style={{width:"75vw", backgroundColor:"black", height: '60vh', backgroundSize: 'cover', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{width:"75vw", backgroundColor:"transparent", height: '60vh', backgroundSize: 'cover', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Link to="/students" className='link'>
                 <div className="card" style={{width: isSidebarExtended ? "18vw" : "19vw"}}>
                     <h3>🧑🏻‍🏫 For Students</h3>

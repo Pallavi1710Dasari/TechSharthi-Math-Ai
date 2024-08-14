@@ -1,5 +1,5 @@
 import './index.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from "../Header";
 import Footer from "../Footer"; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -22,6 +22,8 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCameraCaptureOpen, setIsCameraCaptureOpen] = useState(false);
   const [showChat, setShowChat] = useState(false); // State to control whether to show chat
+
+  
 
   const handleSendMessage = async () => {
     if (userInput.trim()) {
@@ -166,18 +168,17 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
   };
 
   return (
-    <div>
-      <div className={containerClassName}>
+    <div >
+      <div className={containerClassName} >
         {!showChat ? (
           <div>
             <div 
               id="background-container" 
               style={{
                 backgroundImage: `url(${backgroundImage})`, 
-                width: isSidebarExtended ? "65vw" : "75vw", 
+                width: isSidebarExtended ? "75vw" : "80vw", 
                 borderRadius: "10px", 
-                height: '60vh', 
-                margin: "10px", 
+                height: '90vh',  
                 backgroundSize: 'cover', 
                 display: 'flex', 
                 flexDirection: 'column', 
@@ -187,6 +188,7 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
                 padding: "15px"
               }}
             >
+              <Header/>
               <RightSidebar isSidebarExtended={isSidebarExtended} /> 
               <button 
                 onClick={handleStartChat} 
@@ -201,11 +203,11 @@ function MainSection({ containerClassName, pdfpage, isSidebarExtended }) {
               >
                 Start Chat
               </button>
+              <Footer />
             </div>
-            <Footer />
           </div>
         ) : (
-          <div id="chat-container" style={{width: isSidebarExtended ? "65vw" : "78vw", margin:"20px",}} >
+          <div id="chat-container" style={{width: isSidebarExtended ? "65vw" : "78vw", margin:"20px", backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', }}  >
             {pdfpage && !fileSelected && (
               <div className='upload-pdf-con'>
                 <label id="file-upload-label" htmlFor="file-upload">

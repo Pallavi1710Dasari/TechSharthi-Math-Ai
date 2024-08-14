@@ -1,6 +1,6 @@
 .home-con{
     display: flex;
-    background-color: #dfc570;
+    background-color: #fafafa;
     height: 100vh;
     width: 100vw;
     overflow-y: hidden;
@@ -22,10 +22,11 @@
     width: 83vw;
     height: 92vh;
     /* position: relative; */
-    background-color: #263dc4;
-    padding: "20px";
+    background-color: #fafafa;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,8 +37,7 @@
     width: 70vw;
     height: 92vh;
     /* position: relative; */
-    background-color: #263dc4;
-    padding: "20px";
+    background-color: #fafafa;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     text-align: center;
@@ -48,30 +48,4 @@
     margin: 30px 30px 30px 30px;
     overflow: hidden;
 }
- .cards-container-with-full-sidebar{
-    height:20vh;
-    width:20vw;
-    border-radius:"10px";
-    margin:"20px";
-    background-size: 'cover';
-    display: 'flex';
-    flex-direction: 'column';
-    justify-content: 'center';
-    align-items: 'center';
-    overflow:"hidden";
-    padding:"15px";
- }
- .cards-container-without-full-sidebar{
-    height:30vh;
-    width:4vw;
-    border-radius:"10px";
-    margin:"20px";
-    background-size: 'cover';
-    display: 'flex';
-    flex-direction: 'column';
-    justify-content: 'center';
-    align-items: 'center';
-    overflow:"hidden";
-    padding:"15px";
- }
  

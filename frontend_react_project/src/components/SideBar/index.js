@@ -42,8 +42,8 @@ const SideBar = ({ isExpanded, onChangesidebar, sideClassName }) => {
             <img className="logo" src={techSharthiLogo} alt="logo" />
             {isExpanded && (
               <div className="logo-text">
-                <h1 className="title gradient-title">
-                  Equati<span className="subtitle gradient-subtitle">AI</span>
+                <h1 className="title-equity gradient-titles">
+                  Equati<span className="subtitle gradient-subtitles">AI</span>
                 </h1>
               </div>
             )}
